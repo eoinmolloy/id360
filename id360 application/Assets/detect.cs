@@ -31,7 +31,7 @@ Vuforia.ITrackableEventHandler {
 			newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
 		{
 			st=1;
-			Application.LoadLevel("room1");
+			Application.LoadLevel("ControllerScene");
 		}        
 		else
 		{
