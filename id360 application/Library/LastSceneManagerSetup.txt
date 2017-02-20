@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/intro.unity
+- path: Assets/Reginalds Tower Scenes/room1.unity
   isLoaded: 1
   isActive: 1
