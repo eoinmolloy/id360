@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Reginalds Tower Scenes/VRDemo scene.unity
+- path: Assets/intro.unity
   isLoaded: 1
   isActive: 1

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+
+[RequireComponent(typeof(AudioSource))]
+
 public class ObjectInteract3 : MonoBehaviour {
 	float timer;
 	float gazeTime = 2.0f;
@@ -65,6 +68,9 @@ public class ObjectInteract3 : MonoBehaviour {
 			this.transform.Rotate (0, 120, 0);
 			Vector3 temp = new Vector3 (0.06f, 0.7f, 15.0f);
 			gameObject.transform.position = temp;
+
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play(88200);
 
 
 		} else {

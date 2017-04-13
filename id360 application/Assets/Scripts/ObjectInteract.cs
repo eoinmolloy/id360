@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+
+[RequireComponent(typeof(AudioSource))]
 public class ObjectInteract : MonoBehaviour {
 	float timer;
-	float gazeTime = 2.0f;
+	float gazeTime = 5.0f;
 	bool gazedAt;
 	public Material headPiece;
 	public Material centre;
 	bool skybox = true;
 	Vector3 pos;
 	public GameObject prefab;
+
+
 	// Use this for initialization
 	void Start () {
 		pos = this.transform.position;
@@ -62,6 +66,9 @@ public class ObjectInteract : MonoBehaviour {
 			this.transform.Rotate (1, 270, 0);
 			Vector3 temp = new Vector3 (0.06f, 0.7f, 15.0f);
 			gameObject.transform.position = temp;
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play();
+			audio.Play(88200);
 
 
 		} else {
