@@ -55,19 +55,39 @@ public class ObjectInteract3 : MonoBehaviour {
 
 	public void PointerDown(){
 		Debug.Log ("Clicked");
-		//Transform obj = transform.position;
+		//Finding all other buttons in scene to make them invisible
+		GameObject box1 = GameObject.Find ("Exibit1");
+		GameObject box2 = GameObject.Find ("Exibit2");
+		GameObject Exit = GameObject.Find ("ExitDoor");
+		GameObject Up = GameObject.Find ("UpLev");
+		GameObject down = GameObject.Find ("Downlev");
+
+		GameObject cam = GameObject.Find ("GvrViewerMain");
+
+
+		//original size of buttons
+		Vector3 normScale = new Vector3(1, 1, 4);
 		if (skybox == true) {
 			RenderSettings.skybox = headPiece;
 			skybox = false;
 
 			Instantiate (prefab, new Vector3(0, 1, 0), Quaternion.identity);
 
-			//GameObject box1 = GameObject.Find ("Exibit2");
-			//GameObject box2 = GameObject.Find ("Exibit3");
+			//This section controls making the buttons dissappear when interacted with, they are scalled to a valued which is so small it cannot be seen
+			Vector3 scaleSmaller = new Vector3(0.01f, 0.01f, 0.01f);
+
+			box1.transform.localScale = scaleSmaller;
+			box2.transform.localScale = scaleSmaller;
+			Exit.transform.localScale = scaleSmaller;
+			Up.transform.localScale = scaleSmaller;
+			down.transform.localScale = scaleSmaller;
 
 			this.transform.Rotate (0, 120, 0);
 			Vector3 temp = new Vector3 (0.06f, 0.7f, 15.0f);
 			gameObject.transform.position = temp;
+
+			cam.transform.Rotate (0, 160, 0);
+
 
 			AudioSource audio = GetComponent<AudioSource>();
 			audio.Play(88200);
@@ -76,6 +96,14 @@ public class ObjectInteract3 : MonoBehaviour {
 		} else {
 			RenderSettings.skybox = centre;
 			skybox = true;
+
+			//resizing buttons to normal scale
+			box1.transform.localScale = normScale;
+			box2.transform.localScale = normScale;
+			Exit.transform.localScale = normScale;
+			Up.transform.localScale = normScale;
+			down.transform.localScale = normScale;
+
 			gameObject.transform.position = pos;
 			this.transform.Rotate (0, -120, 0);
 		}

@@ -1,4 +1,8 @@
-﻿using UnityEngine; using System.Collections; using Vuforia; using System.Diagnostics; using Debug= UnityEngine.Debug;
+﻿using UnityEngine; 
+using System.Collections; 
+using Vuforia; 
+using System.Diagnostics; 
+using Debug= UnityEngine.Debug;
 
 public class detect : MonoBehaviour,
 Vuforia.ITrackableEventHandler {
@@ -32,6 +36,7 @@ Vuforia.ITrackableEventHandler {
 		{
 			st=1;
 			Application.LoadLevel("ControllerScene");
+			print ("found");
 		}        
 		else
 		{

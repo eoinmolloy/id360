@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(AudioSource))]
 public class ObjectInteract : MonoBehaviour {
 	float timer;
-	float gazeTime = 5.0f;
+	float gazeTime = 3.0f;
 	bool gazedAt;
 	public Material headPiece;
 	public Material centre;
@@ -39,20 +39,31 @@ public class ObjectInteract : MonoBehaviour {
 			}
 		} 
 	}
-
+	//controls when the reticle passes over object
 	public void PointerEnter(){
 		Debug.Log ("Entered");
 		gazedAt = true;
 		timer = 0f;
 	}
-
+	//when the reticled exits object area
 	public void PointerExit(){
 		Debug.Log ("Exit");
 		gazedAt = false;
 	}
-
+	//controls clicking of object
 	public void PointerDown(){
 		Debug.Log ("Clicked");
+
+		//Finding all other buttons in scene to make them invisible
+		GameObject box1 = GameObject.Find ("Exibit2");
+		GameObject box2 = GameObject.Find ("Exibit3");
+		GameObject Exit = GameObject.Find ("ExitDoor");
+		GameObject Up = GameObject.Find ("UpLev");
+		GameObject down = GameObject.Find ("Downlev");
+
+		//original size of buttons
+		Vector3 normScale = new Vector3(1, 1, 4);
+
 		//Transform obj = transform.position;
 		if (skybox == true) {
 			//Video Player
@@ -60,14 +71,21 @@ public class ObjectInteract : MonoBehaviour {
 
 			RenderSettings.skybox = headPiece;
 			skybox = false;
-			GameObject box1 = GameObject.Find ("Exibit2");
-			GameObject box2 = GameObject.Find ("Exibit3");
 
-			this.transform.Rotate (1, 270, 0);
+
+			//This section controls making the buttons dissappear when interacted with, they are scalled to a valued which is so small it cannot be seen
+			Vector3 scaleSmaller = new Vector3(0.01f, 0.01f, 0.01f);
+
+			box1.transform.localScale = scaleSmaller;
+			box2.transform.localScale = scaleSmaller;
+			Exit.transform.localScale = scaleSmaller;
+			Up.transform.localScale = scaleSmaller;
+			down.transform.localScale = scaleSmaller;
+
+			this.transform.Rotate (0, 270, 0);
 			Vector3 temp = new Vector3 (0.06f, 0.7f, 15.0f);
 			gameObject.transform.position = temp;
 			AudioSource audio = GetComponent<AudioSource>();
-			audio.Play();
 			audio.Play(88200);
 
 
@@ -75,7 +93,14 @@ public class ObjectInteract : MonoBehaviour {
 			RenderSettings.skybox = centre;
 			skybox = true;
 			gameObject.transform.position = pos;
-			this.transform.Rotate (-1, -270, 0);
+
+			//resizing buttons to normal scale
+			box1.transform.localScale = normScale;
+			box2.transform.localScale = normScale;
+			Exit.transform.localScale = normScale;
+			Up.transform.localScale = normScale;
+			down.transform.localScale = normScale;
+			this.transform.Rotate (0, -270, 0);
 		}
 	}
 }
